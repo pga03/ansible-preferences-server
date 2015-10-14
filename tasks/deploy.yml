@@ -4,7 +4,7 @@
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
     regexp: 'http://localhost:5984'
     replace: 'http://{{ gpii_preferences_server_couchdb_host_address }}'
-  notify: Enable and/or restart nodejs app systemd unit
+  notify: Enable and/or restart systemd unit
 
 # The next three tasks are an Ansible-paradigm version of https://github.com/gpii-ops/docker-preferences-server/blob/master/modify_preferences.sh
 
