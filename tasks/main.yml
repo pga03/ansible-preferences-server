@@ -1,0 +1,6 @@
+---
+# tasks file for gpii-preferences
+
+- include: deploy.yml
+  tags:
+    - deploy
