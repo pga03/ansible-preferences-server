@@ -6,7 +6,7 @@ A brief description of the role goes here.
 Requirements
 ------------
 
-Running couchdb server.
+Running couchdb server if priming the DB.
 
 Role Variables
 --------------
