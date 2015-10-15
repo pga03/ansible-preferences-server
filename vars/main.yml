@@ -13,7 +13,7 @@ nodejs_app_commands:
   - grunt dedupe-infusion
 nodejs_app_start_script: gpii.js
 nodejs_app_env_vars:
-  - NODE_ENV=\""{{ gpii_preferences_server_environment }}"\"
+  - NODE_ENV="{{ gpii_preferences_server_environment }}"
 nodejs_app_host_address: 127.0.0.1
 nodejs_app_tcp_port: 8081
 nodejs_app_test_http_endpoint: /preferences/carla
