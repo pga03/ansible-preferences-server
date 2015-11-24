@@ -4,14 +4,14 @@
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
     regexp: 'http://localhost:5984'
     replace: 'http://{{ gpii_preferences_server_couchdb_host_address }}'
-  notify: Enable and/or restart systemd unit
+  notify: Restart the application systemd unit
 
 - name: Update the RawPreferencesServer config file's endpoint for retrieving preferences
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
     regexp: '/user/%userToken'
     replace: '/preferences/%userToken'
-  notify: Enable and/or restart systemd unit
+  notify: Restart the application systemd unit
 
 # The next three tasks are an Ansible-paradigm version of https://github.com/gpii-ops/docker-preferences-server/blob/master/modify_preferences.sh
 
