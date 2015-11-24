@@ -17,7 +17,7 @@
 
 - name: copy test data to temporary directory
   copy:
-    src: "/opt/preferences-server/testData/preferences/"
+    src: "{{ nodejs_app_install_dir }}/testData/preferences/"
     dest: /tmp/prefData/
   when: gpii_preferences_server_prime_db
 
