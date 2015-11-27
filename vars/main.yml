@@ -3,7 +3,7 @@
 
 # nodejs application configuration for the ansible-nodejs role
 
-nodejs_app_name: preferences-server
+nodejs_app_name: universal
 nodejs_app_install_dir: /opt/{{ nodejs_app_name }}
 nodejs_app_git_repo: https://github.com/gpii/universal.git
 nodejs_app_git_branch: master
