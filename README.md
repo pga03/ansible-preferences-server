@@ -3,6 +3,11 @@ Role Name
 
 Installs and configures a GPII Preferences Server instance using the nodejs role, optionally loading the test data as well.
 
+Most of the work to install the Preferences Server itself is done through passing variables to the `ansible-nodejs` role; this role really only does Preference Server-specific things, as opposed to general "install and configure a nodejs application" tasks that the other role can handle. Specifically:
+
+- the RawPreferencesServer config file is updated appropriately
+- an option is available to load the test data
+
 Requirements
 ------------
 
