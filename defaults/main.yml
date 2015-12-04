@@ -1,5 +1,5 @@
 ---
-# defaults file for gpii-preferences
+# defaults file for gpii-preferences-server
 gpii_preferences_server_couchdb_host_address: localhost:5984
-gpii_preferences_server_environment: development.all.local
+gpii_preferences_server_environment: preferencesServer.production
 gpii_preferences_server_prime_db: false

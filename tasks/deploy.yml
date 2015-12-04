@@ -13,7 +13,7 @@
     replace: '/preferences/%userToken'
   notify: Restart the application systemd unit
 
-# The next three tasks are an Ansible-paradigm version of https://github.com/gpii-ops/docker-preferences-server/blob/master/modify_preferences.sh
+# These next tasks are an Ansible-paradigm version of https://github.com/gpii-ops/docker-preferences-server/blob/master/modify_preferences.sh
 
 - name: copy test data to temporary directory
   copy:
