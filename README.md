@@ -16,9 +16,9 @@ Running couchdb server if priming the DB.
 Role Variables
 --------------
 
-`gpii_preferences_server_couchdb_host_address`: couchdb host address (Default: "localhost:5984")
-`gpii_preferences_server_environment`: GPII environment; this shouldn't be changed under normal circumstances for this role (Default: "preferencesServer.production")
-`gpii_preferences_server_prime_db`: whether or not to load the test data set to the couchdb instance (Defaul: false)
+`preferences_server_couchdb_host_address`: couchdb host address (Default: "localhost:5984")
+`preferences_server_environment`: GPII environment; this shouldn't be changed under normal circumstances for this role (Default: "preferencesServer.production")
+`preferences_server_prime_db`: whether or not to load the test data set to the couchdb instance (Defaul: false)
 
 Dependencies
 ------------
@@ -33,7 +33,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: prefserver
       roles:
-         - { role: ansible-gpii-preferences-server, gpii_preferences_server_couchdb_host_address: couchdb.gpii.net:5984 }
+         - { role: ansible-gpii-preferences-server, preferences_server_couchdb_host_address: couchdb.gpii.net:5984 }
 
 License
 -------

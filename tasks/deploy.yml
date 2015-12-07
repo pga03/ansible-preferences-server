@@ -3,7 +3,7 @@
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
     regexp: 'http://localhost:5984'
-    replace: 'http://{{ gpii_preferences_server_couchdb_host_address }}'
+    replace: 'http://{{ preferences_server_couchdb_host_address }}'
   notify: Restart the application systemd unit
 
 - name: Update the RawPreferencesServer config file's endpoint for retrieving preferences
@@ -19,56 +19,56 @@
   copy:
     src: "{{ nodejs_app_install_dir }}/testData/preferences/"
     dest: /tmp/prefData/
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
-# We ignore the error here because a failure to list the directory results in an empty list for gpii_preferences_server_tmp_pref_data - the desired behaviour for the next step (do nothing if not priming)
+# We ignore the error here because a failure to list the directory results in an empty list for preferences_server_tmp_pref_data - the desired behaviour for the next step (do nothing if not priming)
 - name: register the contents of the temporary directory
   shell: ls /tmp/prefData/*.json
-  register: gpii_preferences_server_tmp_pref_data
+  register: preferences_server_tmp_pref_data
   ignore_errors: true
 
 - name: modify test data for upload
   template:
     src: uploadedData.j2
     dest: "{{ item[1] }}"
-  with_indexed_items: "{{ gpii_preferences_server_tmp_pref_data.stdout_lines }}"
-  when: gpii_preferences_server_prime_db
+  with_indexed_items: "{{ preferences_server_tmp_pref_data.stdout_lines }}"
+  when: preferences_server_prime_db
 
 - name: delete couchdb index if it exists
   uri:
-    url: http://{{ gpii_preferences_server_couchdb_host_address }}/preferences
+    url: http://{{ preferences_server_couchdb_host_address }}/preferences
     method: DELETE
     status_code: 200,404 # succeeds if it either deletes the index or returns that it can't be deleted due to not existing
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
 - name: create the couchdb index
   uri:
-    url: http://{{ gpii_preferences_server_couchdb_host_address }}/preferences
+    url: http://{{ preferences_server_couchdb_host_address }}/preferences
     method: PUT
     status_code: 201
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
 - name: install Kanso for interacting with couchdb
   npm:
     name: kanso
     state: present
     global: yes
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
 - name: upload the modified test preferences files to couchdb
-  shell: kanso upload {{ item }} http://{{ gpii_preferences_server_couchdb_host_address }}/preferences
+  shell: kanso upload {{ item }} http://{{ preferences_server_couchdb_host_address }}/preferences
   with_fileglob: /tmp/prefData/*.json
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
 - name: remove kanso
   npm:
     name: kanso
     state: absent
     global: yes
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
 
 - name: remove temp directory
   file:
     path: /tmp/prefData
     state: absent
-  when: gpii_preferences_server_prime_db
+  when: preferences_server_prime_db
