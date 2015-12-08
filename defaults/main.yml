@@ -1,5 +1,26 @@
 ---
-# defaults file for gpii-preferences-server
+    
+# defaults for for the preferences-server role
 preferences_server_couchdb_host_address: localhost:5984
 preferences_server_environment: preferencesServer.production
 preferences_server_prime_db: false
+
+# nodejs application configuration for the ansible-nodejs role
+
+nodejs_app_name: universal
+nodejs_app_install_dir: /opt/{{ nodejs_app_name }}
+nodejs_app_git_repo: https://github.com/gpii/universal.git
+nodejs_app_git_branch: master
+nodejs_app_npm_packages:
+  - grunt-cli
+nodejs_app_commands:
+  - npm install
+  - grunt dedupe-infusion
+nodejs_app_start_script: gpii.js
+nodejs_app_env_vars:
+  - NODE_ENV="{{ preferences_server_environment }}"
+nodejs_app_host_address: 127.0.0.1
+nodejs_app_tcp_port: 8082
+nodejs_app_test_http_endpoint: /preferences/carla
+nodejs_app_test_http_status_code: 200
+nodejs_app_test_string: registry.gpii.net
