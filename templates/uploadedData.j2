@@ -1,5 +1,0 @@
-{
-  "_id":"{{ item[1]|replace('.json','')|replace('/tmp/prefData/','') }}",
-  "value":
-    {{ lookup('file', item[1]) }}
-}

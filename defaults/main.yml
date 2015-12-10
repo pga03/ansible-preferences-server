@@ -1,9 +1,8 @@
 ---
-    
+
 # defaults for for the preferences-server role
 preferences_server_couchdb_host_address: localhost:5984
 preferences_server_environment: preferencesServer.production
-preferences_server_prime_db: false
 
 # nodejs application configuration for the ansible-nodejs role
 
