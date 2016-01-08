@@ -1,5 +1,5 @@
-Role Name
-=========
+Preferences Server
+==================
 
 Installs and configures a GPII Preferences Server instance using the nodejs role.
 
