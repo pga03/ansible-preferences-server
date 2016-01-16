@@ -3,7 +3,7 @@
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
     regexp: 'http://localhost:5984'
-    replace: 'http://{{ preferences_server_couchdb_host_address }}'
+    replace: '{{ preferences_server_couchdb_host_address }}'
   notify: Restart the application systemd unit
 
 - name: Update the RawPreferencesServer config file's endpoint for retrieving preferences
