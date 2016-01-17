@@ -1,0 +1,14 @@
+---
+- name: Overwrite localhost:5984 with DEFAULTHOST
+  replace:
+    dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
+    regexp: 'http://localhost:5984'
+    replace: 'https://548123f9-f9d0-4840-b437-a449b2cfb684-bluemix.cloudant.com'
+  notify: Restart the application systemd unit
+
+- name: Update the raw preferences server path for retrieving preferences
+  replace:
+    dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
+    regexp: '/rawPreferences/'
+    replace: '/preferences/'
+  notify: Restart the application systemd unit
