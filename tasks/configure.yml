@@ -1,4 +1,7 @@
 ---
+- name: Debug couchdb address
+  debug: msg="Couchdb variable hase value {{ preferences_server_couchdb_host_address }} "
+
 - name: Overwrite localhost:5984 with DEFAULTHOST
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
