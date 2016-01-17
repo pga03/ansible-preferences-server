@@ -20,12 +20,12 @@
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
     regexp: 'usernameplaceholder'
-    replace: '{{ lookup('env','DB_USERNAME') }}'
+    replace: "{{ lookup('env','DB_USERNAME') }}"
   notify: Restart the application systemd unit
 
 - name: Update the raw preferences server path for retrieving preferences
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
     regexp: 'passwordplaceholder'
-    replace: '{{ lookup('env','DB_PASSWORD') }}''
+    replace: "{{ lookup('env','DB_PASSWORD') }}"
   notify: Restart the application systemd unit
