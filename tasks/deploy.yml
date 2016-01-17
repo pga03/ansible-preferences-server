@@ -13,16 +13,17 @@
     replace: '/preferences/%userToken'
   notify: Restart the application systemd unit
 
- - name: Update the Preferences server with the couchdb url
-   replace:
-     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
-     regexp: 'http://localhost:%port'
-     replace: '{{ preferences_server_couchdb_host_address }}'
-   notify: Restart the application systemd unit
+- name: Update the Preferences server with the couchdb url
+  replace:
+    dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
+    regexp: 'http://localhost:%port'
+    replace: '{{ preferences_server_couchdb_host_address }}'
+  notify: Restart the application systemd unit
 
-  - name: Update the raw preferences server path for retrieving preferences
-    replace:
-      dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
-      regexp: '/rawPreferences/%userToken'
-      replace: '/preferences/%userToken'
-    notify: Restart the application systemd unit
+- name: Update the raw preferences server path for retrieving preferences
+  replace:
+    dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
+    regexp: '/rawPreferences/%userToken'
+    replace: '/preferences/%userToken'
+  notify: Restart the application systemd unit
+  
