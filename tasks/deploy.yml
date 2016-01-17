@@ -1,4 +1,7 @@
 ---
+- name: Debug couchdb address
+  debug: msg="Couchdb variable hase value {{ preferences_server_couchdb_host_address }} "
+
 - name: Update the RawPreferencesServer config file's couchdb address
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/rawPreferencesServer/configs/production.json"
