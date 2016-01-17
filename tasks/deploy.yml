@@ -13,17 +13,23 @@
     replace: '/preferences/%userToken'
   notify: Restart the application systemd unit
 
-- name: Update the Preferences server with the couchdb url
+- name: Overwrite localhost:5984 with DEFAULTHOST
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
-    regexp: 'http://localhost:%port'
+    regexp: 'http://localhost:5984'
+    replace: '{{ preferences_server_couchdb_host_address }}'
+  notify: Restart the application systemd unit
+
+- name: Overwrite DEFAULTHOST with the environment provided host
+  replace:
+    dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
+    regexp: 'DEFAULTHOST'
     replace: '{{ preferences_server_couchdb_host_address }}'
   notify: Restart the application systemd unit
 
 - name: Update the raw preferences server path for retrieving preferences
   replace:
     dest: "{{ nodejs_app_install_dir }}/gpii/node_modules/preferencesServer/configs/development.json"
-    regexp: '/rawPreferences/%userToken'
-    replace: '/preferences/%userToken'
+    regexp: '/rawPreferences/'
+    replace: '/preferences/'
   notify: Restart the application systemd unit
-  
