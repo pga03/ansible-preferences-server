@@ -5,6 +5,6 @@
   tags:
     - deploy
 
-- include: configure.yml
+- include: setupapp.yml
   tags:
-    - configure
+    - setupapp
